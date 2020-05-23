@@ -1,0 +1,13 @@
+---
+- name: Infrastructure managemnet
+  hosts: localhost
+  gather_facts: False
+  connection: local
+  tasks:
+  - name: Launch ec2 instance
+    ec2:
+        instance_type: t2.micro
+        region: us-east-1
+        image: ami-0ec41833a8034f411
+        aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY') }}"
+        aws_secret_key: "{{ lookup('env', 'AWS_SECRET_KEY') }}" 

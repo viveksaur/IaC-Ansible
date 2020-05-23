@@ -1,0 +1,8 @@
+Details of parameter:
+*******************************************
+connection: local -> This connection plugin allows ansible to execute tasks on the Ansible ‘controller’ instead of on a remote host.(No SSH on localhost)
+*******************************************
+gather_facts: true/false -> In Ansible, Facts are nothing but information that we derive from speaking with the remote system. Ansible uses setup module to discover this information automatically. Sometime this information is required in playbook as this is dynamic information fetched from remote systems.This can become time sonsuming process as it needs to gather facts from all systems listed in inventory file.So, we mark it as False if not necessarily required. Also, we have a option of specifying subset of facts to be selected as:
+  gather_facts: True
+  gather_subset: network, hardware, virtual, facter, ohai
+*******************************************
