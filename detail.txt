@@ -6,3 +6,20 @@ gather_facts: true/false -> In Ansible, Facts are nothing but information that w
   gather_facts: True
   gather_subset: network, hardware, virtual, facter, ohai
 *******************************************
+vars_files ->
+
+vars_file directive can only be used when defining a play to specify variable files. The variables from those files are included in the playbook. Since it is used in the start of the play, it most likely implies that some other play(before this play) created those vars files or they were created statically before running the configuration; means they were kind of configuration variables for the play.
+
+include_vars ->
+
+vars_files serves one purpose of including the vars from a set of files but it cannot handle the cases if
+the vars files were created dynamically and you want to include them in play
+include vars in a limited scope.
+You have multiple vars files and you want to include them based on certain criteria e.g. if the local database exists then include configuration of local database otherwise include configuration of a remotely hosted database.
+include_vars have higher priority than vars_files so, it can be used to override default configuration(vars).
+include_vars are evaluated lazily(evaluated at the time when they are used).
+You want to include vars dynamically using a loop.
+You want to read a file and put all those variables in a named dictionary instead of reading all variables in the global variable namespace.
+You want to include all files in a directory or some subset of files in a directory(based on prefix or exclusion list) without knowing the exact names of the vars file(s). 
+************************************************
+no_log: 
